@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'com.code42.homework'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'com.github.stefanbirkner', name: 'system-rules', version: '1.2.0'
+}
+
+task copyTestInputFiles(type: Copy) {
+    into "$buildDir/inputFiles"
+    from 'src/test/resources'
+}
+
+test.dependsOn copyTestInputFiles
+clean.delete copyTestInputFiles
